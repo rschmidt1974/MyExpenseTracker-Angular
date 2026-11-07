@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-gray-100 flex justify-center items-center">
+  <div class="bg-white w-full max-w-xl p-6 rounded-xl shadow-xl">
+    <h1 class="text-2xl font-bold text-center mb-4">
+      Expense Tracker
+    </h1>
+
+    <div class="text-center mb-6">
+      <p class="text-gray-500">Balance</p>
+      <h2 class="text-3xl font-semibold" [class.text-green-600]="service.balance() >= 0"
+        [class.text-red-600]="service.balance() < 0">
+        {{ service.balance() | currency : 'USD' }}
+      </h2>
+    </div>
+
+    <div class="flex justify-between mb-6">
+      <div class="bg-green-100 text-green-700 p-3 rounded text-center w-1/2 mr-2">
+        <p>Income</p>
+        <p class="font-bold">
+          {{ service.income() | currency : 'USD' }}
+        </p>
+      </div>
+      <div class="bg-red-100 text-red-700 p-3 rounded text-center w-1/2 mr-2">
+        <p>Expense</p>
+        <p class="font-bold">
+          {{ service.expense() | currency : 'USD' }}
+        </p>
+      </div>
+    </div>
+
+    <input type="text" [(ngModel)] = "text" class="w-full border p-2 rounded mb-2" placeholder="Description"/>
+    <input type="number" [(ngModel)] = "amount" class="w-full border p-2 rounded mb-2" placeholder="Amount (+income, -expense)"/>
+
+    <button class="w-full bg-blue-600 text-white rounded py-2 hover: bg-blue-700" (click)="addTransaction()">Add Transaction</button>
+  </div>
+</div>
