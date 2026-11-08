@@ -29,4 +29,8 @@ export class ExpenseTracker {
     this.text = '';
     this.amount = 0;
   }
+
+  removeTransaction(id: number){
+    this.service.remove(id);
+  }
 }

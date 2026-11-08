@@ -31,5 +31,20 @@
     <input type="number" [(ngModel)] = "amount" class="w-full border p-2 rounded mb-2" placeholder="Amount (+income, -expense)"/>
 
     <button class="w-full bg-blue-600 text-white rounded py-2 hover: bg-blue-700" (click)="addTransaction()">Add Transaction</button>
+
+    <ul class="mt-6 space-y-2">
+      @for(t of service.transactions(); track t){
+        <li class="flex justify-between items-center border-1-4 p-2 rounded"
+        [class.border-green-500]="t.amount > 0"
+        [class.border-red-500]="t.amount < 0">
+            <span>{{t.text}}</span>
+            <div class="flex items-center gap-2">
+                <span>{{t.amount | currency : 'USD'}}</span>
+                <button class="text-red-500 hover:text-red-700" (click)="removeTransaction(t.id)">X</button>
+            </div>
+        </li>
+      }
+
+    </ul>
   </div>
 </div>
